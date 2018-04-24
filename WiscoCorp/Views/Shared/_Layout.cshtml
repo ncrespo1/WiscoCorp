@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WiscoCorp</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home/Index" class="navbar-brand"><i class="fa fa-home"></i> Home</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Products -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-database"></i> Courses<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Course/Courses"><i class="fa fa-list"></i> Course List</a></li>
+                            <li><a href="~/Course/Register" id="search"><i class="fa fa-search"></i>Course Registration</a></li>
+                        </ul>
+                    </li>
+                    <!-- Customers -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-users"></i>&nbsp;Customers <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if (!Request.IsAuthenticated)
+            {
+                <li><a href="~/Customer/SignIn"><i class="fa fa-sign-in"></i> Sign In</a></li>
+                <li><a href="~/Customer/Register"><i class="fa fa-user-plus"></i> Register</a></li>
+                <li role="separator" class="divider"></li>
+}
+                            <li><a href="~/Customer/Account"><i class="fa fa-user"></i> Your Account</a></li>
+                        </ul>
+                    </li>
+                    <!--Instructors-->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-users"></i>&nbsp;Instructors <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if (!Request.IsAuthenticated)
+            {
+                <li><a href="~/Instructor/SignIn"><i class="fa fa-sign-in"></i> Sign In</a></li>
+                <li><a href="~/Instructor/Register"><i class="fa fa-user-plus"></i> Register</a></li>
+                <li role="separator" class="divider"></li>
+}
+                            <li><a href="~/Instructor/Account"><i class="fa fa-user"></i> Your Account</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="~/Home/SignOut"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+                    </ul>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
